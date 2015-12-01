@@ -1,4 +1,4 @@
-# This imports all the layers for "Growing Communities" into growingCommunitiesLayers2
+# This imports all the layers for "Growing Communities" into sketch
 sketch = Framer.Importer.load "imported/Growing Communities"
 
 pageComp = new PageComponent
@@ -14,21 +14,21 @@ Fruits.visible = true
 pageComp.on Events.Move, (event, param, param2) ->
 	Fruits.x = Math.min(event.x / 4, 0)
 
-# Pages
-pageStrings = ['LaunchScreen', 'Credits', 'RideShare', 'Profile']
+# Set up pages
 pages = {}
-for pageName in pageStrings
+for pageName in ['LaunchScreen', 'Credits', 'RideShare', 'Profile']
 	pages[pageName] = sketch[pageName]
 	pages[pageName].visible = true
 	pages[pageName].y = 0
 	pages[pageName].subLayersByName('Background')[0].visible = false
 	pageComp.addPage(pages[pageName])
 
+# Map pages to launch buttons
 sections = {
-	My_account: pages['Profile'],
-	Veggie_bags: pages['Credits'],
-	Collection_points: pages['Credits'],
-	Collection_share: pages['RideShare']
+	My_account: pages.Profile,
+	Veggie_bags: pages.Credits,
+	Collection_points: pages.Credits,
+	Collection_share: pages.RideShare
 }
 
 for key, value of pages.LaunchScreen.subLayers
